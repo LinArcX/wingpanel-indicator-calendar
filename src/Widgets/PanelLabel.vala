@@ -2,12 +2,10 @@ public class Widgets.PanelLabel : Gtk.Grid {
 
     private Gtk.Label date_label ;
     private Gtk.Label time_label ;
-    public string clock_format { get ; set ; }
-    public bool clock_show_seconds { get ; set ; }
-    public bool clock_show_weekday { get ; set ; }
-    public LibCalendar.SolarHijri cal  { get ; construct ; }
-    private Services.TimeManager time_manager ;
+
     private GLib.DateTime dt { get ; set ; }
+    private Services.TimeManager time_manager ;
+    public LibCalendar.SolarHijri cal  { get ; construct ; }
 
     public PanelLabel (LibCalendar.SolarHijri solar) {
         GLib.Object (cal: solar) ;
