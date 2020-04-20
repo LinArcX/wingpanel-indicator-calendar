@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-    <enum id="com.github.linarcx.wingpanel.indicator-calendar.clock-formats">
+    <enum id="com.github.linarcx.wingpanel-indicator-calendar.clock-formats">
         <value nick="12h" value="0" />
         <value nick="24h" value="1" />
         <value nick="ISO8601" value="2" />
     </enum>
-    <schema path="/com/github/linarcx/wingpanel/indicator/calendar/" id="com.github.linarcx.wingpanel.indicator-calendar">
+    <schema path="/com/github/linarcx/wingpanel/indicator/calendar/" id="com.github.linarcx.wingpanel-indicator-calendar">
         <key type="b" name="show-weeks">
             <default>false</default>
             <summary>Show week numbers.</summary>
             <description>If this is set to true, week numbers will be shown in the calendar.</description>
         </key>
-        <key name="clock-format" enum="com.github.linarcx.wingpanel.indicator-calendar.clock-formats">
+        <key name="clock-format" enum="com.github.linarcx.wingpanel-indicator-calendar.clock-formats">
             <default>"12h"</default>
             <summary>Whether the clock displays in 12h, 24h, or ISO format</summary>
             <description>This key is deprecated and is now ignored unless ISO format is selected.</description>

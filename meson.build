@@ -1,11 +1,6 @@
-project('com.github.linarcx.wingpanel.indicator-calendar', 'vala', 'c')
+project('com.github.linarcx.wingpanel-indicator-calendar', 'vala', 'c')
 
 wingpanel_dep = dependency('wingpanel-2.0')
-
-#add_project_arguments(
-#    ['--vapidir', join_paths(meson.current_source_dir(), 'vapi')],
-#    language: 'vala'
-#)
 
 dependencies = [
     dependency('glib-2.0'),

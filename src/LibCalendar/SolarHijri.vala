@@ -26,6 +26,53 @@ public class LibCalendar.SolarHijri : GLib.Object {
         return x - fdiv (x, y) * y ;
     }
 
+    public string get_month_name(int month_num) {
+        string month_name = "" ;
+
+        switch( month_num ){
+        case 1:
+            month_name = "Farvardin" ;
+            break ;
+        case 2:
+            month_name = "اردیبهشت" ;
+            break ;
+        case 3:
+            month_name = "Khordad" ;
+            break ;
+        case 4:
+            month_name = "Tir" ;
+            break ;
+        case 5:
+            month_name = "Mordad" ;
+            break ;
+        case 6:
+            month_name = "Shahrivar" ;
+            break ;
+        case 7:
+            month_name = "Mehr" ;
+            break ;
+        case 8:
+            month_name = "Aban" ;
+            break ;
+        case 9:
+            month_name = "Azar" ;
+            break ;
+        case 10:
+            month_name = "Day" ;
+            break ;
+        case 11:
+            month_name = "Bahman" ;
+            break ;
+        case 12:
+            month_name = "Esfand" ;
+            break ;
+        default:
+            month_name = "Hmm.." ;
+            break ;
+        }
+        return month_name ;
+    }
+
     private uint16 sh_days_in_year(int16 year) {
         return sh_is_leap (year) ? 366 : 365 ;
     }

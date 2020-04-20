@@ -1,13 +1,13 @@
 public class Widgets.PanelLabel : Gtk.Grid {
+
     private Gtk.Label date_label ;
     private Gtk.Label time_label ;
-    private Services.TimeManager time_manager ;
-
     public string clock_format { get ; set ; }
     public bool clock_show_seconds { get ; set ; }
     public bool clock_show_weekday { get ; set ; }
-
     public LibCalendar.SolarHijri cal  { get ; construct ; }
+    private Services.TimeManager time_manager ;
+    private GLib.DateTime dt { get ; set ; }
 
     public PanelLabel (LibCalendar.SolarHijri solar) {
         GLib.Object (cal: solar) ;
@@ -28,10 +28,14 @@ public class Widgets.PanelLabel : Gtk.Grid {
         add (time_label) ;
 
         var clock_settings = new GLib.Settings ("io.elementary.desktop.wingpanel.datetime") ;
-        clock_settings.bind ("clock-format", this, "clock-format", SettingsBindFlags.DEFAULT) ;
-        clock_settings.bind ("clock-show-seconds", this, "clock-show-seconds", SettingsBindFlags.DEFAULT) ;
-        clock_settings.bind ("clock-show-date", date_revealer, "reveal_child", SettingsBindFlags.DEFAULT) ;
-        clock_settings.bind ("clock-show-weekday", this, "clock-show-weekday", SettingsBindFlags.DEFAULT) ;
+        clock_settings.bind ("clock-format", this,
+                             "clock-format", SettingsBindFlags.DEFAULT) ;
+        clock_settings.bind ("clock-show-seconds", this,
+                             "clock-show-seconds", SettingsBindFlags.DEFAULT) ;
+        clock_settings.bind ("clock-show-date", date_revealer,
+                             "reveal_child", SettingsBindFlags.DEFAULT) ;
+        clock_settings.bind ("clock-show-weekday", this,
+                             "clock-show-weekday", SettingsBindFlags.DEFAULT) ;
 
         notify.connect (() => {
             update_labels () ;
@@ -42,32 +46,33 @@ public class Widgets.PanelLabel : Gtk.Grid {
         time_manager.notify["is-12h"].connect (update_labels) ;
     }
 
-    private string show_gr_to_sh(LibCalendar.SolarHijri cal) {
+    private void calculate_jalali_date() {
         string output = "" ;
         int16 y = 0 ;
         uint8 m = 0 ;
         uint16 d = 0 ;
-        cal.gr_to_sh (2020, 04, 20, ref y, ref m, ref d) ;
-        output = y.to_string () + "/" +
-                 m.to_string () + "/" +
-                 d.to_string () ;
-        return output ;
 
+        cal.gr_to_sh ((int16) dt.get_year (),
+                      (uint8) dt.get_month (),
+                      (uint16) dt.get_day_of_month (),
+                      ref y, ref m, ref d) ;
+
+        output = d.to_string () + "  " +
+                 cal.get_month_name ((int) m) + "  " +
+                 y.to_string () ;
+
+        date_label.label = output ;
+    }
+
+    private void calculate_current_time() {
+        time_label.label = dt.get_hour ().to_string () + ":" +
+                           dt.get_minute ().to_string () ;
     }
 
     private void update_labels() {
-        // string date_format ;
-        // if( clock_format == "ISO8601" ){
-        // date_format = "%F" ;
-        // } else {
-        // date_format = Granite.DateTime.get_default_date_format (clock_show_weekday, true, false) ;
-        // }
-
-        // date_label.label = time_manager.format (date_format) ;
-        date_label.label = show_gr_to_sh (cal) ;
-
-        // string time_format = Granite.DateTime.get_default_time_format (time_manager.is_12h, clock_show_seconds) ;
-        // time_label.label = time_manager.format (time_format) ;
+        dt = new GLib.DateTime.now_local () ;
+        calculate_jalali_date () ;
+        calculate_current_time () ;
     }
 
 }

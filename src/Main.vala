@@ -1,33 +1,31 @@
-public class DateTime.Indicator : Wingpanel.Indicator {
-    public static GLib.Settings settings ;
+public class Calendar.Indicator : Wingpanel.Indicator {
 
-    private Widgets.PanelLabel panel_label ;
     private Gtk.Grid main_grid ;
     private Gtk.ListBox event_listbox ;
+    private Widgets.PanelLabel panel_label ;
+
+    public static GLib.Settings settings ;
     private uint update_events_idle_source = 0 ;
 
     public Indicator () {
         Object (
-            code_name: Wingpanel.Indicator.DATETIME,
-            display_name: "Date & Time",
-            description: "The date and time indicator"
+            code_name: "wingpanel-indicator-calendar",
+            description: "A wingpanel indicator to show calendar"
             ) ;
     }
 
     static construct {
-        settings = new GLib.Settings ("io.elementary.desktop.wingpanel.datetime") ;
+        settings = new GLib.Settings ("com.github.linarcx.wingpanel-indicator-calendar") ;
     }
-
     construct {
         visible = true ;
     }
 
     public override Gtk.Widget get_display_widget() {
         if( panel_label == null ){
-            var solar = new LibCalendar.SolarHijri () ;
-            panel_label = new Widgets.PanelLabel (solar) ;
+            var calendar = new LibCalendar.SolarHijri () ;
+            panel_label = new Widgets.PanelLabel (calendar) ;
         }
-
         return panel_label ;
     }
 
@@ -44,7 +42,6 @@ public class DateTime.Indicator : Wingpanel.Indicator {
 
             var placeholder_style_context = placeholder_label.get_style_context () ;
             placeholder_style_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL) ;
-            // placeholder_style_context.add_class (Granite.STYLE_CLASS_H3_LABEL) ;
 
             event_listbox = new Gtk.ListBox () ;
             event_listbox.selection_mode = Gtk.SelectionMode.NONE ;
@@ -59,7 +56,6 @@ public class DateTime.Indicator : Wingpanel.Indicator {
 
             main_grid = new Gtk.Grid () ;
             main_grid.margin_top = 12 ;
-            // main_grid.attach (calendar, 0, 0) ;
             main_grid.attach (new Gtk.Separator (Gtk.Orientation.VERTICAL), 1, 0) ;
             main_grid.attach (scrolled_window, 2, 0) ;
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 2, 3) ;
@@ -80,14 +76,6 @@ public class DateTime.Indicator : Wingpanel.Indicator {
         return main_grid ;
     }
 
-    private void idle_update_events() {
-        if( update_events_idle_source > 0 ){
-            GLib.Source.remove (update_events_idle_source) ;
-        }
-
-        update_events_idle_source = GLib.Idle.add (update_events) ;
-    }
-
     private bool update_events() {
         foreach( unowned Gtk.Widget widget in event_listbox.get_children ()){
             widget.destroy () ;
@@ -106,7 +94,7 @@ public class DateTime.Indicator : Wingpanel.Indicator {
 }
 
 public Wingpanel.Indicator get_indicator(Module module) {
-    debug ("Activating DateTime Indicator") ;
-    var indicator = new DateTime.Indicator () ;
+    debug ("Activating Calendar Indicator") ;
+    var indicator = new Calendar.Indicator () ;
     return indicator ;
 }
