@@ -44,7 +44,7 @@ public class DateTime.Indicator : Wingpanel.Indicator {
 
             var placeholder_style_context = placeholder_label.get_style_context () ;
             placeholder_style_context.add_class (Gtk.STYLE_CLASS_DIM_LABEL) ;
-            placeholder_style_context.add_class (Granite.STYLE_CLASS_H3_LABEL) ;
+            // placeholder_style_context.add_class (Granite.STYLE_CLASS_H3_LABEL) ;
 
             event_listbox = new Gtk.ListBox () ;
             event_listbox.selection_mode = Gtk.SelectionMode.NONE ;

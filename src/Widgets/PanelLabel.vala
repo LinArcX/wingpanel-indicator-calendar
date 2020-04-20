@@ -56,18 +56,18 @@ public class Widgets.PanelLabel : Gtk.Grid {
     }
 
     private void update_labels() {
-        string date_format ;
-        if( clock_format == "ISO8601" ){
-            date_format = "%F" ;
-        } else {
-            date_format = Granite.DateTime.get_default_date_format (clock_show_weekday, true, false) ;
-        }
+        // string date_format ;
+        // if( clock_format == "ISO8601" ){
+        // date_format = "%F" ;
+        // } else {
+        // date_format = Granite.DateTime.get_default_date_format (clock_show_weekday, true, false) ;
+        // }
 
         // date_label.label = time_manager.format (date_format) ;
         date_label.label = show_gr_to_sh (cal) ;
 
-        string time_format = Granite.DateTime.get_default_time_format (time_manager.is_12h, clock_show_seconds) ;
-        time_label.label = time_manager.format (time_format) ;
+        // string time_format = Granite.DateTime.get_default_time_format (time_manager.is_12h, clock_show_seconds) ;
+        // time_label.label = time_manager.format (time_format) ;
     }
 
 }

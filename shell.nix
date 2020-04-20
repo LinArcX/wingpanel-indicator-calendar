@@ -22,25 +22,25 @@ in
       pkgs-2020-03-23.posix_man_pages
 
       pkgs-2020-03-23.vala
-      #pkgs-2020-03-23.pantheon.granite
       pkgs-2020-03-23.fontconfig
+      #pkgs-2020-03-23.pantheon.granite
 
-      #pkgs-2020-03-23.gtk3
-      #pkgs-2020-03-23.pcre pkgs-2020-03-23.harfbuzz
-      #pkgs-2020-03-23.xorg.libpthreadstubs
-      #pkgs-2020-03-23.xorg.libXdmcp
-      #pkgs-2020-03-23.utillinux
-      #pkgs-2020-03-23.libselinux
-      #pkgs-2020-03-23.libsepol
-      #pkgs-2020-03-23.libxkbcommon
-      #pkgs-2020-03-23.epoxy
-      #pkgs-2020-03-23.at_spi2_core.dev
-      #pkgs-2020-03-23.dbus
-      #pkgs-2020-03-23.xorg.libXtst
+      pkgs-2020-03-23.gtk3
+      pkgs-2020-03-23.pcre pkgs-2020-03-23.harfbuzz
+      pkgs-2020-03-23.xorg.libpthreadstubs
+      pkgs-2020-03-23.xorg.libXdmcp
+      pkgs-2020-03-23.utillinux
+      pkgs-2020-03-23.libselinux
+      pkgs-2020-03-23.libsepol
+      pkgs-2020-03-23.libxkbcommon
+      pkgs-2020-03-23.epoxy
+      pkgs-2020-03-23.at_spi2_core.dev
+      pkgs-2020-03-23.dbus
+      pkgs-2020-03-23.xorg.libXtst
 
       pkgs-2020-03-23.uncrustify
+      pkgs-2020-03-23.libgee
       pkgs-2020-03-23.libcanberra-gtk3
-      pkgs-2020-03-23.pantheon.granite
       pkgs-2020-03-23.pantheon.wingpanel
     ];
 
