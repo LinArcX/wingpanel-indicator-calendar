@@ -16,6 +16,7 @@ public class Widgets.PanelLabel : Gtk.Grid {
     construct {
         date_label = new Gtk.Label (null) ;
         date_label.margin_end = 12 ;
+        date_label.margin_top = 2 ;
 
         var date_revealer = new Gtk.Revealer () ;
         date_revealer.transition_type = Gtk.RevealerTransitionType.SLIDE_LEFT ;
