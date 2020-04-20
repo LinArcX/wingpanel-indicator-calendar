@@ -1,0 +1,4 @@
+/build/*
+/garbage/*
+/.clangd/*
+compile_commands.json
