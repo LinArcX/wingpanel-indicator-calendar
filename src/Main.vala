@@ -37,14 +37,14 @@ public class Calendar.Indicator : Wingpanel.Indicator {
 
             var pixbuf_georgian = new Gdk.Pixbuf.from_file_at_size ("/usr/share/icons/hicolor/scalable/apps/united-states.svg", 50, 30) ;
             var icon_georgian = new Gtk.Image.from_pixbuf (pixbuf_georgian) ;
+            icon_georgian.margin_right = 10 ;
 
             var pixbuf_ghamari = new Gdk.Pixbuf.from_file_at_size ("/usr/share/icons/hicolor/scalable/apps/saudi-arabia.svg", 50, 30) ;
             var icon_ghamari = new Gtk.Image.from_pixbuf (pixbuf_ghamari) ;
+            icon_ghamari.margin_right = 10 ;
 
-            lbl_georgian.halign = Gtk.Align.START ;
-            lbl_georgian.set_justify (Gtk.Justification.LEFT) ;
-            lbl_georgian.width_request = 80 ;
-            // lbl_georgian.expand = true ;
+            lbl_georgian.expand = true ;
+
             lbl_georgian.height_request = 30 ;
             lbl_ghamari.height_request = 30 ;
             lbl_event.height_request = 40 ;
@@ -53,9 +53,11 @@ public class Calendar.Indicator : Wingpanel.Indicator {
             main_grid.attach (lbl_georgian, 0, 0) ;
             main_grid.attach (icon_georgian, 1, 0) ;
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 1) ;
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 1) ;
             main_grid.attach (lbl_ghamari, 0, 2) ;
             main_grid.attach (icon_ghamari, 1, 2) ;
             main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 3) ;
+            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 3) ;
             main_grid.attach (lbl_event, 0, 4) ;
             main_grid.expand = true ;
 
@@ -71,9 +73,9 @@ public class Calendar.Indicator : Wingpanel.Indicator {
     }
 
     private void calculate_georgian_date() {
-        lbl_georgian.set_label (dt.get_year ().to_string () + "  " +
-                                dt.get_month ().to_string () + "  " +
-                                dt.get_day_of_month ().to_string ()) ;
+        lbl_georgian.set_label (dt.get_day_of_month ().to_string () + "  " +
+                                calendar.get_georgian_month_name (dt.get_month ()) + "  " +
+                                dt.get_year ().to_string ()) ;
     }
 
     private void calculate_ghamari_date() {
@@ -86,7 +88,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        lbl_ghamari.set_label (y.to_string () + "  " + m.to_string () + "  " + d.to_string ()) ;
+        lbl_ghamari.set_label (d.to_string () + "  " + calendar.get_islamic_month_name (m) + "  " + y.to_string ()) ;
     }
 
     public override void opened() {
@@ -123,3 +125,7 @@ public Wingpanel.Indicator get_indicator(Module module) {
 //// icon_ghamari.set_size_request (5, 4) ;
 // icon_georgian.pixel_size = 8 ;
 // icon_ghamari.pixel_size = 8 ;
+
+// lbl_georgian.halign = Gtk.Align.START ;
+// lbl_georgian.set_justify (Gtk.Justification.LEFT) ;
+// lbl_georgian.width_request = 80 ;

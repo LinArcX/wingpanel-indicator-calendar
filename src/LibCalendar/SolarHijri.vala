@@ -26,45 +26,139 @@ public class LibCalendar.SolarHijri : GLib.Object {
         return x - fdiv (x, y) * y ;
     }
 
-    public string get_month_name(int month_num) {
+    public string get_georgian_month_name(int month_num) {
         string month_name = "" ;
 
         switch( month_num ){
         case 1:
-            month_name = "Farvardin" ;
+            month_name = "January" ;
+            break ;
+        case 2:
+            month_name = "February" ;
+            break ;
+        case 3:
+            month_name = "March" ;
+            break ;
+        case 4:
+            month_name = "April" ;
+            break ;
+        case 5:
+            month_name = "May" ;
+            break ;
+        case 6:
+            month_name = "June" ;
+            break ;
+        case 7:
+            month_name = "July" ;
+            break ;
+        case 8:
+            month_name = "August" ;
+            break ;
+        case 9:
+            month_name = "September" ;
+            break ;
+        case 10:
+            month_name = "October" ;
+            break ;
+        case 11:
+            month_name = "November" ;
+            break ;
+        case 12:
+            month_name = "December" ;
+            break ;
+        default:
+            month_name = "Hmm.." ;
+            break ;
+        }
+        return month_name ;
+    }
+
+    public string get_jalali_month_name(int month_num) {
+        string month_name = "" ;
+
+        switch( month_num ){
+        case 1:
+            month_name = "فروردین" ;
             break ;
         case 2:
             month_name = "اردیبهشت" ;
             break ;
         case 3:
-            month_name = "Khordad" ;
+            month_name = "خرداد" ;
             break ;
         case 4:
-            month_name = "Tir" ;
+            month_name = "تیر" ;
             break ;
         case 5:
-            month_name = "Mordad" ;
+            month_name = "مرداد" ;
             break ;
         case 6:
-            month_name = "Shahrivar" ;
+            month_name = "شهریور" ;
             break ;
         case 7:
-            month_name = "Mehr" ;
+            month_name = "مهر" ;
             break ;
         case 8:
-            month_name = "Aban" ;
+            month_name = "آبان" ;
             break ;
         case 9:
-            month_name = "Azar" ;
+            month_name = "آذر" ;
             break ;
         case 10:
-            month_name = "Day" ;
+            month_name = "دی" ;
             break ;
         case 11:
-            month_name = "Bahman" ;
+            month_name = "بهمن" ;
             break ;
         case 12:
-            month_name = "Esfand" ;
+            month_name = "اسفند" ;
+            break ;
+        default:
+            month_name = "Hmm.." ;
+            break ;
+        }
+        return month_name ;
+    }
+
+    public string get_islamic_month_name(int month_num) {
+        string month_name = "" ;
+
+        switch( month_num ){
+        case 1:
+            month_name = "محرم" ;
+            break ;
+        case 2:
+            month_name = "صفر" ;
+            break ;
+        case 3:
+            month_name = "ربیع الاول" ;
+            break ;
+        case 4:
+            month_name = "ربیع الثانی" ;
+            break ;
+        case 5:
+            month_name = "جمادی الاول" ;
+            break ;
+        case 6:
+            month_name = "جمادی الثانی" ;
+            break ;
+        case 7:
+            month_name = "رجب" ;
+            break ;
+        case 8:
+            month_name = "شعبان" ;
+            break ;
+        case 9:
+            month_name = "رمضان" ;
+            break ;
+        case 10:
+            month_name = "شوال" ;
+            break ;
+        case 11:
+            month_name = "ذیقعده" ;
+            break ;
+        case 12:
+            month_name = "ذیحجه" ;
             break ;
         default:
             month_name = "Hmm.." ;

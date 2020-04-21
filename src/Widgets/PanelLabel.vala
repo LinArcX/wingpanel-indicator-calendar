@@ -57,7 +57,7 @@ public class Widgets.PanelLabel : Gtk.Grid {
                       ref y, ref m, ref d) ;
 
         output = d.to_string () + "  " +
-                 cal.get_month_name ((int) m) + "  " +
+                 cal.get_jalali_month_name ((int) m) + "  " +
                  y.to_string () ;
 
         date_label.label = output ;
