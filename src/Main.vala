@@ -15,6 +15,17 @@ public class Calendar.Indicator : Wingpanel.Indicator {
     private Gtk.Label lbl_persian_national_event { get ; set ; }
     private Gtk.Label lbl_persian_personage_event { get ; set ; }
 
+    private Wingpanel.Widgets.Separator sp_0_0 ;
+    private Wingpanel.Widgets.Separator sp_0_1 ;
+    private Wingpanel.Widgets.Separator sp_1_0 ;
+    private Wingpanel.Widgets.Separator sp_1_1 ;
+    private Wingpanel.Widgets.Separator sp_2_0 ;
+    private Wingpanel.Widgets.Separator sp_2_1 ;
+    private Wingpanel.Widgets.Separator sp_3_0 ;
+    private Wingpanel.Widgets.Separator sp_3_1 ;
+    private Wingpanel.Widgets.Separator sp_4_0 ;
+    private Wingpanel.Widgets.Separator sp_4_1 ;
+
     public Indicator () {
         Object (
             code_name: "wingpanel-indicator-calendar",
@@ -23,6 +34,16 @@ public class Calendar.Indicator : Wingpanel.Indicator {
 
     construct {
         visible = true ;
+        sp_0_0 = new Wingpanel.Widgets.Separator () ;
+        sp_0_1 = new Wingpanel.Widgets.Separator () ;
+        sp_1_0 = new Wingpanel.Widgets.Separator () ;
+        sp_1_1 = new Wingpanel.Widgets.Separator () ;
+        sp_2_0 = new Wingpanel.Widgets.Separator () ;
+        sp_2_1 = new Wingpanel.Widgets.Separator () ;
+        sp_3_0 = new Wingpanel.Widgets.Separator () ;
+        sp_3_1 = new Wingpanel.Widgets.Separator () ;
+        sp_4_0 = new Wingpanel.Widgets.Separator () ;
+        sp_4_1 = new Wingpanel.Widgets.Separator () ;
         settings = new GLib.Settings ("com.github.linarcx.wingpanel-indicator-calendar") ;
     }
 
@@ -54,6 +75,11 @@ public class Calendar.Indicator : Wingpanel.Indicator {
             lbl_persian_solar_event = new Gtk.Label ("There's no solar event!") ;
             lbl_persian_lonar_event = new Gtk.Label ("There's no lonar event!") ;
             lbl_persian_national_event = new Gtk.Label ("There's no national event!") ;
+
+            // lbl_persian_national_event.margin_left = 50 ;
+            // lbl_persian_solar_event.margin_left = 50 ;
+            // lbl_persian_personage_event.margin_left = 50 ;
+
             lbl_persian_personage_event = new Gtk.Label ("There's no personage event!") ;
             lbl_persian_solar_event.height_request = 40 ;
             lbl_persian_lonar_event.height_request = 40 ;
@@ -63,25 +89,25 @@ public class Calendar.Indicator : Wingpanel.Indicator {
             main_grid = new Gtk.Grid () ;
             main_grid.attach (lbl_georgian, 0, 0) ;
             main_grid.attach (icon_georgian, 1, 0) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 1) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 1) ;
+            main_grid.attach (sp_0_0, 0, 1) ;
+            main_grid.attach (sp_0_1, 1, 1) ;
 
             main_grid.attach (lbl_ghamari, 0, 2) ;
             main_grid.attach (icon_ghamari, 1, 2) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 3) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 3) ;
+            main_grid.attach (sp_1_0, 0, 3) ;
+            main_grid.attach (sp_1_1, 1, 3) ;
 
             main_grid.attach (lbl_persian_solar_event, 0, 4) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 5) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 5) ;
+            main_grid.attach (sp_2_0, 0, 5) ;
+            main_grid.attach (sp_2_1, 1, 5) ;
 
             main_grid.attach (lbl_persian_lonar_event, 0, 6) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 7) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 7) ;
+            main_grid.attach (sp_3_0, 0, 7) ;
+            main_grid.attach (sp_3_1, 1, 7) ;
 
             main_grid.attach (lbl_persian_national_event, 0, 8) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 0, 9) ;
-            main_grid.attach (new Wingpanel.Widgets.Separator (), 1, 9) ;
+            main_grid.attach (sp_4_0, 0, 9) ;
+            main_grid.attach (sp_4_1, 1, 9) ;
 
             main_grid.attach (lbl_persian_personage_event, 0, 10) ;
             main_grid.expand = true ;
@@ -124,7 +150,14 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        lbl_persian_solar_event.set_label (_json_parser.get_persian_solar_events (m, d)) ;
+        var tmp = _json_parser.get_persian_solar_events (6, 1) ;
+        if( tmp.length > 0 ){
+            lbl_persian_solar_event.set_label (tmp) ;
+        } else {
+            lbl_persian_solar_event.set_visible (false) ;
+            sp_2_0.visible = false ;
+            sp_2_1.visible = false ;
+        }
     }
 
     private void show_persian_lonar_events() {
@@ -135,7 +168,14 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        lbl_persian_lonar_event.set_label (_json_parser.get_persian_lonar_events (m, d)) ;
+        var tmp = _json_parser.get_persian_lonar_events (m, d) ;
+        if( tmp.length > 0 ){
+            lbl_persian_lonar_event.set_label (tmp) ;
+        } else {
+            lbl_persian_lonar_event.set_visible (false) ;
+            sp_3_0.visible = false ;
+            sp_3_1.visible = false ;
+        }
     }
 
     private void show_persian_national_events() {
@@ -146,8 +186,14 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        string current_national_event = _json_parser.get_persian_national_events (m, d) ;
-        lbl_persian_national_event.set_label (current_national_event) ;
+        var tmp = _json_parser.get_persian_national_events (6, 1) ;
+        if( tmp.length > 0 ){
+            lbl_persian_national_event.set_label (tmp) ;
+        } else {
+            lbl_persian_national_event.set_visible (false) ;
+            sp_4_0.visible = false ;
+            sp_4_1.visible = false ;
+        }
     }
 
     private void show_persian_personage_events() {
@@ -158,7 +204,15 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        lbl_persian_personage_event.set_label (_json_parser.get_persian_personage_events (m, d)) ;
+        var tmp = _json_parser.get_persian_personage_events (6, 1) ;
+        if( tmp.length > 0 ){
+            lbl_persian_personage_event.set_label (tmp) ;
+        } else {
+            lbl_persian_personage_event.set_visible (false) ;
+            sp_4_0.visible = false ;
+            sp_4_1.visible = false ;
+
+        }
     }
 
     public override void opened() {

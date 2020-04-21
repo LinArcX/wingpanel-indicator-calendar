@@ -19,6 +19,10 @@
             "IsHoliday": false
         },
         {
+            "20": "روز جهانی شادی",
+            "IsHoliday": false
+        },
+        {
             "21": "روز جهانی شعر",
             "IsHoliday": false
         },
@@ -29,7 +33,12 @@
         {
             "23": "روز جهانی هواشناسی",
             "IsHoliday": false
+        },
+        {
+            "27": "روز جهانی تئاتر",
+            "IsHoliday": false
         }
+
     ],
     "4": [
         {

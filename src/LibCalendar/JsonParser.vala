@@ -50,6 +50,7 @@ public class LibCalendar.JsonParser : GLib.Object {
     }
 
     public string get_persian_solar_events(int month, int day) {
+        current_event = "" ;
         _month = month ;
         _day = day ;
         parse_json ("/usr/share/wingpanel-indicator-calendar/PersianSolar.json") ;
@@ -57,6 +58,7 @@ public class LibCalendar.JsonParser : GLib.Object {
     }
 
     public string get_persian_lonar_events(int month, int day) {
+        current_event = "" ;
         _month = month ;
         _day = day ;
         parse_json ("/usr/share/wingpanel-indicator-calendar/PersianLonar.json") ;
@@ -64,6 +66,7 @@ public class LibCalendar.JsonParser : GLib.Object {
     }
 
     public string get_persian_national_events(int month, int day) {
+        current_event = "" ;
         _month = month ;
         _day = day ;
         parse_json ("/usr/share/wingpanel-indicator-calendar/PersianNational.json") ;
@@ -71,6 +74,7 @@ public class LibCalendar.JsonParser : GLib.Object {
     }
 
     public string get_persian_personage_events(int month, int day) {
+        current_event = "" ;
         _month = month ;
         _day = day ;
         parse_json ("/usr/share/wingpanel-indicator-calendar/PersianPersonage.json") ;
