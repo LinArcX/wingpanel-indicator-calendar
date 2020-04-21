@@ -150,7 +150,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        var tmp = _json_parser.get_persian_solar_events (6, 1) ;
+        var tmp = _json_parser.get_persian_solar_events (m, d) ;
         if( tmp.length > 0 ){
             lbl_persian_solar_event.set_label (tmp) ;
         } else {
@@ -186,7 +186,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        var tmp = _json_parser.get_persian_national_events (6, 1) ;
+        var tmp = _json_parser.get_persian_national_events (m, d) ;
         if( tmp.length > 0 ){
             lbl_persian_national_event.set_label (tmp) ;
         } else {
@@ -204,7 +204,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
                            (uint8) dt.get_month (),
                            (uint16) dt.get_day_of_month (),
                            ref y, ref m, ref d) ;
-        var tmp = _json_parser.get_persian_personage_events (6, 1) ;
+        var tmp = _json_parser.get_persian_personage_events (m, d) ;
         if( tmp.length > 0 ){
             lbl_persian_personage_event.set_label (tmp) ;
         } else {

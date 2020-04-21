@@ -24,8 +24,8 @@ shared_module(
     files,
     dependencies: dependencies,
     install: true,
-    #install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
-    install_dir : '/usr/lib/wingpanel/'
+    install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
+    #install_dir : '/usr/lib/wingpanel/'
 )
 
 subdir('data')
