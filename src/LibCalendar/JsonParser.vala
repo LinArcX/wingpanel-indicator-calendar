@@ -38,19 +38,42 @@ public class LibCalendar.JsonParser : GLib.Object {
         }
     }
 
-    public string get_persian_national_events(int month, int day) {
-        string wholeText = "" ;
-        _month = month ;
-        _day = day ;
-
+    private void parse_json(string json_address) {
         Json.Parser parser = new Json.Parser () ;
         try {
-            parser.load_from_file ("/usr/share/wingpanel-indicator-calendar/PersianNational.json") ;
+            parser.load_from_file (json_address) ;
             Json.Node node = parser.get_root () ;
             process_events (node) ;
         } catch ( Error e ) {
             print ("Unable to parse the string: %s\n", e.message) ;
         }
+    }
+
+    public string get_persian_solar_events(int month, int day) {
+        _month = month ;
+        _day = day ;
+        parse_json ("/usr/share/wingpanel-indicator-calendar/PersianSolar.json") ;
+        return current_event ;
+    }
+
+    public string get_persian_lonar_events(int month, int day) {
+        _month = month ;
+        _day = day ;
+        parse_json ("/usr/share/wingpanel-indicator-calendar/PersianLonar.json") ;
+        return current_event ;
+    }
+
+    public string get_persian_national_events(int month, int day) {
+        _month = month ;
+        _day = day ;
+        parse_json ("/usr/share/wingpanel-indicator-calendar/PersianNational.json") ;
+        return current_event ;
+    }
+
+    public string get_persian_personage_events(int month, int day) {
+        _month = month ;
+        _day = day ;
+        parse_json ("/usr/share/wingpanel-indicator-calendar/PersianPersonage.json") ;
         return current_event ;
     }
 
