@@ -9,6 +9,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
     private Gtk.Label lbl_georgian { get ; set ; }
     private Gtk.Label lbl_event { get ; set ; }
     private LibCalendar.SolarHijri calendar { get ; set ; }
+    private LibCalendar.JsonParser _json_parser { get ; set ; }
 
     public Indicator () {
         Object (
@@ -24,6 +25,7 @@ public class Calendar.Indicator : Wingpanel.Indicator {
     public override Gtk.Widget get_display_widget() {
         if( panel_label == null ){
             calendar = new LibCalendar.SolarHijri () ;
+            _json_parser = new LibCalendar.JsonParser () ;
             panel_label = new Widgets.PanelLabel (calendar) ;
         }
         return panel_label ;
@@ -96,8 +98,8 @@ public class Calendar.Indicator : Wingpanel.Indicator {
         calculate_georgian_date () ;
         calculate_ghamari_date () ;
 
-        int random_number = Random.int_range (0, 100) ;
-        lbl_event.set_label (random_number.to_string ()) ;
+        string current_national_event = _json_parser.get_persian_national_events (dt.get_month (), dt.get_day_of_month ()) ;
+        lbl_event.set_label (current_national_event) ;
     }
 
     public override void closed() {
@@ -110,22 +112,3 @@ public Wingpanel.Indicator get_indicator(Module module) {
     var indicator = new Calendar.Indicator () ;
     return indicator ;
 }
-
-// pixbuf = gtk.gdk.pixbuf_new_from_file ('/path/to/the/image.png') ;
-// pixbuf = pixbuf.scale_simple (width, height, gtk.gdk.INTERP_BILINEAR) ;
-// image = gtk.Image () ;
-// image.set_from_pixbuf (pixbuf) ;
-// image = gtk.image_new_from_pixbuf (pixbuf) ;
-
-
-// pixbuf_georgian.scale_simple (2, 1, Gdk.InterpType.BILINEAR) ;
-// var icon_ghamari = new Gtk.Image.from_file ("/usr/share/icons/hicolor/scalable/apps/saudi-arabia.svg") ;
-// icon_georgian.set_size_request (5, 4) ;
-// icon_georgian.icon_size = 7 ;
-//// icon_ghamari.set_size_request (5, 4) ;
-// icon_georgian.pixel_size = 8 ;
-// icon_ghamari.pixel_size = 8 ;
-
-// lbl_georgian.halign = Gtk.Align.START ;
-// lbl_georgian.set_justify (Gtk.Justification.LEFT) ;
-// lbl_georgian.width_request = 80 ;

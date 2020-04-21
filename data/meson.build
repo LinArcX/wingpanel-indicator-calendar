@@ -16,6 +16,11 @@ install_data(
 )
 
 install_data(
+	'assets/events/JSon/PersianNational.json',
+	install_dir: join_paths(get_option('datadir'), 'wingpanel-indicator-calendar'),
+)
+
+install_data(
 	'gschema.xml',
 	install_dir: join_paths(get_option('datadir'), 'glib-2.0', 'schemas'),
 	rename: meson.project_name() + '.gschema.xml'

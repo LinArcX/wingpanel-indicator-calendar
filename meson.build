@@ -6,6 +6,7 @@ dependencies = [
     dependency('glib-2.0'),
     dependency('gobject-2.0'),
     dependency('gtk+-3.0'),
+    dependency('json-glib-1.0'),
     meson.get_compiler('vala').find_library('posix'),
     wingpanel_dep
 ]
@@ -15,6 +16,7 @@ files = [
     'src/Widgets/PanelLabel.vala',
     'src/Services/TimeManager.vala',
     'src/LibCalendar/SolarHijri.vala',
+    'src/LibCalendar/JsonParser.vala',
 ]
 
 shared_module(

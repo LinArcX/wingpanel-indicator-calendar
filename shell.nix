@@ -42,6 +42,7 @@ in
       pkgs-2020-03-23.libgee
       pkgs-2020-03-23.libcanberra-gtk3
       pkgs-2020-03-23.pantheon.wingpanel
+      pkgs-2020-03-23.json-glib
     ];
 
     FONTCONFIG_FILE = "${pkgs-2020-03-23.fontconfig.out}/etc/fonts/fonts.conf";
