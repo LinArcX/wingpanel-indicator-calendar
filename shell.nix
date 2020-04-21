@@ -23,7 +23,6 @@ in
 
       pkgs-2020-03-23.vala
       pkgs-2020-03-23.fontconfig
-      #pkgs-2020-03-23.pantheon.granite
 
       pkgs-2020-03-23.gtk3
       pkgs-2020-03-23.pcre pkgs-2020-03-23.harfbuzz

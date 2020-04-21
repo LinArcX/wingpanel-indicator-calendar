@@ -98,7 +98,15 @@ public class Calendar.Indicator : Wingpanel.Indicator {
         calculate_georgian_date () ;
         calculate_ghamari_date () ;
 
-        string current_national_event = _json_parser.get_persian_national_events (dt.get_month (), dt.get_day_of_month ()) ;
+        int16 y = 0 ;
+        uint8 m = 0 ;
+        uint16 d = 0 ;
+        calendar.gr_to_sh ((int16) dt.get_year (),
+                           (uint8) dt.get_month (),
+                           (uint16) dt.get_day_of_month (),
+                           ref y, ref m, ref d) ;
+        string current_national_event = _json_parser.get_persian_national_events (m, d) ;
+        // string current_national_event = _json_parser.get_persian_national_events (2, 2) ;
         lbl_event.set_label (current_national_event) ;
     }
 
