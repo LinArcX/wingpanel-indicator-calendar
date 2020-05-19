@@ -32,5 +32,9 @@ To install, use ninja install:
 ### Distributions
 #### Void [[WIP](https://github.com/void-linux/void-packages/pull/21155)]
 
+## Donate
+- Monero: `48VdRG9BNePEcrUr6Vx6sJeVz6EefGq5e2F5S9YV2eJtd5uAwjJ7Afn6YeVTWsw6XGS6mXueLywEea3fBPztUbre2Lhia7e`
+<img src="data/assets/donate/monero.png" align="center" />
+
 ## License
 ![License](https://img.shields.io/github/license/LinArcX/wingpanel-indicator-calendar.svg)
